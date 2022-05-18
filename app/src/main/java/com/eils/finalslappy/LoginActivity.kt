@@ -22,10 +22,10 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Per rimuovere l'action bar ball'activity di login
+        // To remove the action bar from the login activity
         supportActionBar?.hide()
 
-        // Ottenimento dell'istanza codivisa Firebase auth
+        // Obtaining the shared "Firebase auth" instance
         myAuth = FirebaseAuth.getInstance()
 
         binding.tvSignup.setOnClickListener {

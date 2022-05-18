@@ -21,10 +21,10 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Per rimuovere l'action bar ball'activity di sign up
+        // To remove the action bar from the sign up activity
         supportActionBar?.hide()
 
-        // Ottenimento dell'istanza codivisa Firebase auth
+        // Obtaining the shared "Firebase auth" instance
         myAuth = FirebaseAuth.getInstance()
 
         // Switch to login activity
