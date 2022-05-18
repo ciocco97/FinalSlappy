@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Final Slappy</string>
+    <string name="welcome_to_slappy">WELCOME TO SLAPPY</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="retype_password">Retype password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="hint_login">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="email_default">eilindieil@gmail.com</string>
+    <string name="hint_signup">Don\'t have an account?</string>
+</resources>

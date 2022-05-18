@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "969540861265",
+    "project_id": "slappy-46f47",
+    "storage_bucket": "slappy-46f47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969540861265:android:3d5a9e7f398ec9ba3d6770",
+        "android_client_info": {
+          "package_name": "com.eils.finalslappy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969540861265-egejp3ioo3jr8vl06ne8krna5hdkmnpb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eils.finalslappy",
+            "certificate_hash": "31368a21ebeae411ae3767ab382860095a6e493c"
+          }
+        },
+        {
+          "client_id": "969540861265-vhe63hssfbnbgjkcmq99h78tjlmgu1oj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmqaO0FmWrwCpwB7xFiNCGyUAQDH6K3cA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969540861265-vhe63hssfbnbgjkcmq99h78tjlmgu1oj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
