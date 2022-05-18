@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
         myAuth = FirebaseAuth.getInstance()
 
         binding.tvSignup.setOnClickListener {
-            Log.d("FinalSlappy", "Bottone cliccato")
             intent = Intent(this, SignupActivity::class.java)
             finish()
             startActivity(intent)

@@ -6,11 +6,8 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import com.eils.finalslappy.databinding.ActivitySignupBinding
-import com.eils.finalslappy.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SignupActivity : AppCompatActivity() {
@@ -18,7 +15,7 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
 
     private lateinit var myAuth: FirebaseAuth
-    private lateinit var myDbRef: DatabaseReference
+    private val db = Firebase.firestore
 
     private val tag: String = "FinalSlappy"
 
@@ -77,7 +74,7 @@ class SignupActivity : AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = myAuth.currentUser
-        if(currentUser != null){
+        if (currentUser != null) {
             Log.d(tag, "Utente già loggato")
             toMainActivity()
         }
@@ -89,7 +86,7 @@ class SignupActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign up success
                     Log.d(tag, "createUserWithEmail:success")
-                    firebaseDatabasesignup(username, email, myAuth.currentUser?.uid!!)
+                    firebaseDatabaseSignup(username, email, myAuth.currentUser?.uid!!)
                 } else {
                     // Sign up fails
                     Log.w(tag, "createUserWithEmail:failure", task.exception)
@@ -97,15 +94,23 @@ class SignupActivity : AppCompatActivity() {
             }
     }
 
-    private fun firebaseDatabasesignup(username: String, email: String, uid: String) {
-        // logic behind adding user to db
-//        myDbRef = Firebase.database.reference
-//        myDbRef.child("user").child(uid).setValue(User(username, email, uid))
-//        toMainActivity()
-        val database = Firebase.database
-        val myRef = database.getReference("user")
+    private fun firebaseDatabaseSignup(username: String, email: String, uid: String) {
+        // Create a new user with a first and last name
+        val user = hashMapOf(
+            "username" to username,
+            "email" to email
+        )
 
-        myRef.child(uid).setValue(User(username, email, uid))
+        // Add a new document with a generated ID
+        db.collection("user").document(uid)
+            .set(user)
+            .addOnSuccessListener {
+                Log.d(tag, "DocumentSnapshot added with ID: uid")
+                toMainActivity()
+            }
+            .addOnFailureListener { e ->
+                Log.w(tag, "Error adding document", e)
+            }
     }
 
     private fun toMainActivity() {
