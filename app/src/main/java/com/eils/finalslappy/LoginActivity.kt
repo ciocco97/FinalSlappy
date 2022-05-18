@@ -57,13 +57,23 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = myAuth.currentUser
+        if(currentUser != null){
+            Log.d(tag, "Utente già loggato")
+            toMainActivity()
+        }
+    }
+
     private fun firebaseAuthLogin(email: String, password: String) {
         myAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Login success
                     Log.d(tag, "signInWithEmail:success")
-                    login()
+                    toMainActivity()
                 } else {
                     // Login in fails
                     Log.w(tag, "signInWithEmail:failure", task.exception)
@@ -71,19 +81,10 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    private fun login() {
+    private fun toMainActivity() {
         intent = Intent(this, MainActivity::class.java)
         finish()
         startActivity(intent)
-    }
-
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = myAuth.currentUser
-        if(currentUser != null){
-            Log.w(tag, "Utente già loggato")
-        }
     }
 
 }
