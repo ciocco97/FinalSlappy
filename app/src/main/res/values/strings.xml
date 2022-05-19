@@ -10,4 +10,6 @@
     <string name="login">Login</string>
     <string name="email_default">eilindieil@gmail.com</string>
     <string name="hint_signup">Don\'t have an account?</string>
+    <string name="username_default">Eilquadromezzi</string>
+    <string name="logo_content_description">Logo</string>
 </resources>

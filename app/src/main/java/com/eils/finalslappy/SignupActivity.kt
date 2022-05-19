@@ -32,9 +32,7 @@ class SignupActivity : AppCompatActivity() {
 
         // Switch to login activity
         binding.tvLogin.setOnClickListener {
-            intent = Intent(this, LoginActivity::class.java)
-            finish()
-            startActivity(intent)
+            toLoginActivity()
         }
 
         binding.btnSignup.setOnClickListener {
@@ -42,24 +40,24 @@ class SignupActivity : AppCompatActivity() {
             val username = binding.etSignupUsername.text.toString().trim { it <= ' ' }
             val email = binding.etSignupEmail.text.toString().trim { it <= ' ' }
             val password = binding.etSignupPassword.text.toString()
-            val retiped_password = binding.etSignupRepeatPassword.text.toString()
+            val retipedPassword = binding.etSignupRepeatPassword.text.toString()
 
             // Register error conditions
             when {
                 TextUtils.isEmpty(username) -> {
-                    Log.w(tag, "Campo username vuoto")
+                    Log.w(tag, "Username field empty")
                 }
                 TextUtils.isEmpty(email) -> {
-                    Log.w(tag, "Campo email vuoto")
+                    Log.w(tag, "Email field empty")
                 }
                 TextUtils.isEmpty(password) -> {
-                    Log.w(tag, "Campo email vuoto")
+                    Log.w(tag, "Password field empty")
                 }
-                TextUtils.isEmpty(retiped_password) -> {
-                    Log.w(tag, "Campo email vuoto")
+                TextUtils.isEmpty(retipedPassword) -> {
+                    Log.w(tag, "Retype password field empty")
                 }
-                password != retiped_password -> {
-                    Log.w(tag, "Le due password non coincidono")
+                password != retipedPassword -> {
+                    Log.w(tag, "The two passwords don't match")
                 }
 
                 else -> {
@@ -95,13 +93,13 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun firebaseDatabaseSignup(username: String, email: String, uid: String) {
-        // Create a new user with a first and last name
+        // Create a new user with a username and an email
         val user = hashMapOf(
             "username" to username,
             "email" to email
         )
 
-        // Add a new document with a generated ID
+        // Add a new document (user) with the same id of the FirebaseAuth one
         db.collection("user").document(uid)
             .set(user)
             .addOnSuccessListener {
@@ -111,6 +109,12 @@ class SignupActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w(tag, "Error adding document", e)
             }
+    }
+
+    private fun toLoginActivity() {
+        intent = Intent(this, LoginActivity::class.java)
+        finish()
+        startActivity(intent)
     }
 
     private fun toMainActivity() {

@@ -29,9 +29,7 @@ class LoginActivity : AppCompatActivity() {
         myAuth = FirebaseAuth.getInstance()
 
         binding.tvSignup.setOnClickListener {
-            intent = Intent(this, SignupActivity::class.java)
-            finish()
-            startActivity(intent)
+            toSignupActivity()
         }
 
         binding.btnLogin.setOnClickListener {
@@ -78,6 +76,12 @@ class LoginActivity : AppCompatActivity() {
                     Log.w(tag, "signInWithEmail:failure", task.exception)
                 }
             }
+    }
+
+    private fun toSignupActivity() {
+        intent = Intent(this, SignupActivity::class.java)
+        finish()
+        startActivity(intent)
     }
 
     private fun toMainActivity() {
