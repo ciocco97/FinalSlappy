@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import com.eils.finalslappy.databinding.ActivitySignupBinding
+import com.eils.finalslappy.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -94,10 +95,7 @@ class SignupActivity : AppCompatActivity() {
 
     private fun firebaseDatabaseSignup(username: String, email: String, uid: String) {
         // Create a new user with a username and an email
-        val user = hashMapOf(
-            "username" to username,
-            "email" to email
-        )
+        val user = User(username, email)
 
         // Add a new document (user) with the same id of the FirebaseAuth one
         db.collection("user").document(uid)
